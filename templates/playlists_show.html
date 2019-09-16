@@ -8,4 +8,9 @@
 {% endfor %}
 
 <p><a href='/playlists/{{ playlist._id }}/edit'>Edit</a></p>
+<!-- Delete button -->
+<p><form method='POST' action='/playlists/{{ playlist._id }}/delete'>
+    <input type='hidden' name='_method' value='DELETE'>
+    <button type='submit'>Delete</button>
+</form></p>
 {% endblock %}

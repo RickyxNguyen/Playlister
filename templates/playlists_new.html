@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 
-{% extends 'base.html' %}
-
 {% block content %}
 <form method='POST' action='/playlists'>
 {% include 'partials/playlists_form.html' %}
@@ -10,6 +8,11 @@
 <p>
     <button type='submit'>Save Playlist</button>
 </p>
+</form>
 
+<form action='/'>
+    <p>
+    <button type='submit'>Cancel</button>
+    </p>
 </form>
 {% endblock %}

@@ -10,11 +10,6 @@ playlists = db.playlists
 app = Flask(__name__)
 
 
-# playlists = [
-#     {'title': 'Cat Videos', 'description': 'Cats acting weird'},
-#     {'title': '80\'s Music', 'description': 'Don\'t stop believing!'}
-# ]
-
 @app.route('/')
 def playlists_index():
     """Show all playlists."""
@@ -38,14 +33,6 @@ def playlists_new():
     """Create a new playlist."""
     return render_template('playlists_new.html', playlist={}, title='New Playlist')
 
-...
-
-@app.route('/playlists/<playlist_id>/edit')
-def playlists_edit(playlist_id):
-    """Show the edit form for a playlist."""
-    playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
-    return render_template('playlists_edit.html', playlist=playlist, title='Edit Playlist')
-
 
 @app.route('/playlists/<id>/edit')
 def playlists_edit(playlist_id):
@@ -53,6 +40,7 @@ def playlists_edit(playlist_id):
     playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
     video_links = '\n'.join(playlist.get('videos'))
     return render_template('playlists_edit.html', playlist=playlist)
+
 
 @app.route('/playlists/<playlist_id>', methods=['POST'])
 def playlists_update(playlist_id):
@@ -67,6 +55,16 @@ def playlists_update(playlist_id):
             {'_id': ObjectId(playlist_id)},
             {'$set': updated_playlist})
         return redirect(url_for('playlists_show', playlist_id=playlist_id))
+    else:
+        raise NotFound()
+
+
+@app.route('/playlists/<playlist_id>/delete', methods=['POST'])
+def playlists_delete(playlist_id):
+    """Delete one playlist."""
+    if request.form.get('_method') == 'DELETE':
+        playlists.delete_one({'_id': ObjectId(playlist_id)})
+        return redirect(url_for('playlists_index'))
     else:
         raise NotFound()
 
