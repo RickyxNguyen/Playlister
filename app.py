@@ -4,6 +4,8 @@ from bson.objectid import ObjectId
 from werkzeug.exceptions import NotFound
 import os
 
+
+
 client = MongoClient()
 db = client.Playlister
 playlists = db.playlists
