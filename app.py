@@ -10,11 +10,7 @@ db = client.get_default_database()
 playlists = db.playlists
 
 app = Flask(__name__)
-
-playlists = [
-    { 'title': 'Cat Videos', 'description': 'Cats acting weird', 'videos':'cats' },
-    { 'title': '80\'s Music', 'description': 'Don\'t stop believing!','videos':'old' }
-]
+    
 @app.route('/')
 def playlists_index():
     """Show all playlists."""
