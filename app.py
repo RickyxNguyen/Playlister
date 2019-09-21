@@ -14,8 +14,8 @@ app = Flask(__name__)
 @app.route('/')
 def playlists_index():
     """Show all playlists."""
-    playlists=playlists.find()
-    return render_template('playlists_index.html', playlists=playlists)
+    playlist=playlists.find()
+    return render_template('playlists_index.html', playlist=playlist)
 
 
 @app.route('/playlists', methods=['POST'])
