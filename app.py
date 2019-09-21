@@ -10,11 +10,12 @@ db = client.get_default_database()
 playlists = db.playlists
 
 app = Flask(__name__)
-    
+
 @app.route('/')
 def playlists_index():
     """Show all playlists."""
-    return render_template('playlists_index.html', playlists=playlists.find())
+    playlists=playlists.find()
+    return render_template('playlists_index.html', playlists=playlists)
 
 
 @app.route('/playlists', methods=['POST'])
