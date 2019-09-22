@@ -1,4 +1,5 @@
-<form>
+<form action='/playlists/comments' method='post'>
+    <input type='hidden' value='{{ playlist._id }}' name='playlist_id'/>
     <fieldset>
         <legend>Add a Comment</legend>
         <!-- TITLE -->
