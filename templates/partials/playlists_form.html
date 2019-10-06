@@ -1,21 +1,45 @@
+ <!-- templates/partials/playlists_form.html -->
+
+<!-- HTML Forms cannot use PUT so we use post 
+Value - Pass in values of playlist we want to edit -->
+<!-- 
+    action - where we want form to submit data to
+    fieldset - a set of form controls/attribues/inputs
+    legend - name for the fieldset
+-->
 <fieldset>
-    <legend>Edit Playlist</legend>
-    <!-- TITLE -->
-    <div class='form-group'>
-        <label for='playlist-title'>Title</label><br>
-        <input class='form-control' id='playlist-title' type='text' name='title' value='{{ playlist.title }}'/>
-    </div>
+        <legend>Edit Playlist</legend>
+        <!-- TITLE -->
+        <div class='form-group'>
+            <label for='playlist-title'>Title</label><br>
+            <input class='form-control' id='playlist-title' type='text' name='title' value='{{ playlist.title }}'/>
+        </div>
+    
+        <!-- DESCRIPTION -->
+        <div class='form-group'>
+            <label for='description'>Description</label><br>
+            <input class='form-control' id='description' type='text' name='description' value='{{ playlist.description }}' />
+        </div>
+    
+        <!-- Video Links -->
+        <div class='form-group'>
+            <label for='playlist-videos'>Videos</label><br/>
+            <p class='text-muted'>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.</p>
+            <textarea class='form-control' id='playlist-videos' name='videos' rows='10' />{{ "\n".join(playlist.videos) }}</textarea>
+        </div>
 
-    <!-- DESCRIPTION -->
-    <div class='form-group'>
-        <label for='description'>Description</label><br>
-        <input class='form-control' id='description' type='text' name='description' value='{{ playlist.description }}' />
-    </div>
+            <!-- Ratings(Drop Down Menu)-->
+        <div class ='form-group '>
+            <label for='ratings'> Rating:  </label>
+            <br>
+            <select name='rating'>
+                <option value= ' &#9733;' > &#9733;</option>
+                <option value= ' &#9733; &#9733;' > &#9733; &#9733; </option>
+                <option value= ' &#9733; &#9733; &#9733;' > &#9733; &#9733; &#9733;</option>
+                <option value= ' &#9733; &#9733; &#9733; &#9733;' > &#9733; &#9733; &#9733; &#9733;</option>
+                <option value= ' &#9733; &#9733; &#9733; &#9733; &#9733;' > &#9733; &#9733; &#9733; &#9733; &#9733;</option>
+            </select>
+        </div>
 
-    <!-- DESCRIPTION -->
-    <div class='form-group'>
-        <label for='playlist-videos'>Videos</label><br/>
-        <p class='text-muted'>Add videos in the form of 'https://youtube.com/embed/#KEY'. Separate with a newline.</p>
-        <textarea class='form-control' id='playlist-videos' name='videos' rows='10' />{{ "\n".join(playlist.videos) }}</textarea>
-    </div>
-</fieldset>
+
+    </fieldset>
